@@ -1,15 +1,14 @@
 import React, { FC, useCallback, useState, createRef, useEffect } from 'react';
-import { View, FlatList, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import { useSelector } from 'react-redux';
 import { TodoStyles as styles } from '@todo/styles'
-import Strings from '@todo/strings';
 import { TAB_TYPE } from '@todo/constants';
 import { DialogRefProps, TodoListItemProps, TodoListItemUpdateProps, TodoProps } from '@todo/interfaces'
 import BottomDialog from './02.bottom-dialog'
 import Swiper from 'react-native-swiper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { RootState } from '@todo/redux';
 import TodoPage from './01.todo-page'
 
