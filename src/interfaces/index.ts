@@ -23,6 +23,11 @@ export interface TodoProps {
   navigation: NavigationProps
 }
 
+export interface HeaderProps {
+  onGoBack: ()=>void,
+  title: string,
+}
+
 export interface TodoListItemProps {
   title: string,
   content: string,

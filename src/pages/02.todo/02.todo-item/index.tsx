@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 const TodoItem: FC<TodoItemProps> = (props) => {
   const { title, content, isDone, index, onPressItem, onClickCheck } = props;
   const translateX = useRef(new Animated.Value(0)).current
-  const onPressCheckbox = useCallback(() => {
+  const onPressCheckbox = () => {
     Animated.timing(
       translateX,
       {
@@ -16,13 +16,14 @@ const TodoItem: FC<TodoItemProps> = (props) => {
         useNativeDriver: false,
         easing: Easing.cubic,
       }
-    ).start(()=> {
+    ).start(()=> { 
+      translateX.setValue(0);
       onClickCheck(index);
     });
-  }, [translateX]);
+  };
   const iconName = useMemo(() => isDone ?  'check-square' : 'square-o', [isDone]);
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity activeOpacity={1} style={styles.container}>
       <Animated.View style={[styles.item, {
         transform: [{ translateX }]
       }]}>

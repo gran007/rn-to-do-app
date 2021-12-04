@@ -1,4 +1,4 @@
-const ko: { [name: string]: string } = {
+const ko = {
   LOGO_TITLE: `Simple Todo`,
   LOGIN_PLACEHOLDER: `이메일 주소를 입력하세요`,
   EMAIL_ERROR: `이메일 주소가 유효하지 않습니다`,

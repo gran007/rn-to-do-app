@@ -64,10 +64,7 @@ export const LoginStyles = StyleSheet.create({
   }
 });
 
-export const TodoStyles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
+export const HeaderStyles = StyleSheet.create({
   header: {
     ...CS.centerVertical,
     width: '100%',
@@ -84,10 +81,37 @@ export const TodoStyles = StyleSheet.create({
     height: scale(56),
     ...CS.centerAlign,
   },
+});
+
+export const TodoStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  
   sliderContainer: {
     width: '100%',
     height: 100,
     backgroundColor: Colors.brownishGrey,
+  },
+  tabBar: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+    height: verticalScale(80),
+    borderTopWidth: 1,
+    borderColor: Colors.brownishGrey,
+    backgroundColor: Colors.lightWhite,
+  },
+  tabButton: {
+    width: scale(120),
+    height: scale(56),
+    ...CS.centerAlign,
+  },
+  swiperDotStyle: {
+    display: 'none',
+  },
+  swiperPage: {
+    flex: 1,
   }
 });
 

@@ -1,4 +1,4 @@
-const en: { [name: string]: string } = {
+const en = {
   LOGO_TITLE: `Simple Todo`,
   LOGIN_PLACEHOLDER: `Input email`,
   EMAIL_ERROR: `email address is not valid`,
