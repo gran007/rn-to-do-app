@@ -23,6 +23,14 @@ export interface TodoProps {
   navigation: NavigationProps
 }
 
+export interface TodoPageProps {
+  onGoBack: ()=>void,
+  list: TodoListItemProps[],
+  onPressItem: (item: TodoListItemProps, index: number) => void,
+  onClickCheck: (index: number) => void,
+  isDone: boolean,
+}
+
 export interface HeaderProps {
   onGoBack: ()=>void,
   title: string,

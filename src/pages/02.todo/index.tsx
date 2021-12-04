@@ -5,14 +5,13 @@ import { TodoStyles as styles } from '@todo/styles'
 import Strings from '@todo/strings';
 import { TAB_TYPE } from '@todo/constants';
 import { DialogRefProps, TodoListItemProps, TodoListItemUpdateProps, TodoProps } from '@todo/interfaces'
-import TodoItem from './02.todo-item'
-import BottomDialog from './03.bottom-dialog'
+import BottomDialog from './02.bottom-dialog'
 import Swiper from 'react-native-swiper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
-import Header from './01.header'
 import AsyncStorage from '@react-native-community/async-storage';
 import { RootState } from '@todo/redux';
+import TodoPage from './01.todo-page'
 
 const Todo: FC<TodoProps> = (props) => {
   const { navigation } = props;
@@ -27,13 +26,13 @@ const Todo: FC<TodoProps> = (props) => {
     navigation.navigate('login');
   }, [navigation]);
   useEffect(() => {
-    if(load) {
-      AsyncStorage.setItem(userId as string, JSON.stringify({inBoxList, doneList}));
+    if (load) {
+      AsyncStorage.setItem(userId as string, JSON.stringify({ inBoxList, doneList }));
     }
   }, [inBoxList, doneList])
   useEffect(() => {
-    AsyncStorage.getItem(userId as string).then((item)=>{
-      if(item) {
+    AsyncStorage.getItem(userId as string).then((item) => {
+      if (item) {
         const { inBoxList, doneList } = JSON.parse(item);
         setInBoxList([...inBoxList]);
         setDoneList([...doneList]);
@@ -58,7 +57,7 @@ const Todo: FC<TodoProps> = (props) => {
     setInBoxList([...inBoxList, item]);
   }, [inBoxList]);
   const onUpdateItem = useCallback((item: TodoListItemUpdateProps) => {
-    if(tabIndex === TAB_TYPE.INBOX) {
+    if (tabIndex === TAB_TYPE.INBOX) {
       inBoxList[item.index].title = item.title;
       inBoxList[item.index].content = item.content;
       setInBoxList([...inBoxList]);
@@ -69,7 +68,7 @@ const Todo: FC<TodoProps> = (props) => {
     }
   }, [tabIndex, inBoxList, doneList]);
   const onDeleteItem = useCallback((index: number) => {
-    if(tabIndex === TAB_TYPE.INBOX) {
+    if (tabIndex === TAB_TYPE.INBOX) {
       inBoxList.splice(index, 1);
       setInBoxList([...inBoxList]);
     } else {
@@ -94,50 +93,20 @@ const Todo: FC<TodoProps> = (props) => {
           dotStyle={styles.swiperDotStyle}
           activeDotStyle={styles.swiperDotStyle}
           onIndexChanged={(index: number) => setTabIndex(index)}>
-          <View style={styles.swiperPage}>
-            <Header onGoBack={onGoBack} title={Strings.TODO_INBOX} />
-            <FlatList
-              refreshing={false}
-              onRefresh={() => { }}
-              keyboardShouldPersistTaps='handled'
-              data={inBoxList}
-              keyExtractor={(_, index: number) => `todoItem_${index}`}
-              renderItem={({ item, index }: { item: TodoListItemProps, index: number }) => {
-                const isLast = index + 1 === inBoxList.length;
-                return <TodoItem
-                  index={index}
-                  title={item.title}
-                  isDone={false}
-                  content={item.content}
-                  isLast={isLast}
-                  onClickCheck={onClickCheckInBoxItem}
-                  onPressItem={()=>onPressItem(item, index)}
-                />
-              }}
-            />
-          </View>
-          <View style={styles.swiperPage}>
-            <Header onGoBack={onGoBack} title={Strings.TODO_DONE} />
-            <FlatList
-              refreshing={false}
-              onRefresh={() => { }}
-              keyboardShouldPersistTaps='handled'
-              data={doneList}
-              keyExtractor={(_, index: number) => `todoItem_${index}`}
-              renderItem={({ item, index }: { item: TodoListItemProps, index: number }) => {
-                const isLast = index + 1 === doneList.length;
-                return <TodoItem
-                  index={index}
-                  title={item.title}
-                  isDone={true}
-                  content={item.content}
-                  isLast={isLast}
-                  onClickCheck={onClickCheckDoneItem}
-                  onPressItem={()=>onPressItem(item, index)}
-                />
-              }}
-            />
-          </View>
+          <TodoPage
+            onGoBack={onGoBack}
+            onClickCheck={onClickCheckInBoxItem}
+            onPressItem={onPressItem}
+            isDone={false}
+            list={inBoxList}
+          />
+          <TodoPage
+            onGoBack={onGoBack}
+            onClickCheck={onClickCheckDoneItem}
+            onPressItem={onPressItem}
+            isDone={true}
+            list={doneList}
+          />
         </Swiper>
         <View style={styles.tabBar}>
           <TouchableOpacity
@@ -146,22 +115,22 @@ const Todo: FC<TodoProps> = (props) => {
             <Icon name='inbox' size={32} color={tabIndex === TAB_TYPE.INBOX ? Colors.black : Colors.blueGrey} />
           </TouchableOpacity>
           <TouchableOpacity
-            style={styles.tabButton}
-            onPress={() => onClickTab(TAB_TYPE.DONE)}>
-            <Icon name='check-square' size={32} color={tabIndex === TAB_TYPE.DONE ? Colors.black : Colors.blueGrey} />
-          </TouchableOpacity>
-          <TouchableOpacity
             style={styles.addButton}
             onPress={onShowAddDialog}>
             <Icon name='plus' size={32} color={Colors.white} />
           </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.tabButton}
+            onPress={() => onClickTab(TAB_TYPE.DONE)}>
+            <Icon name='check-square' size={32} color={tabIndex === TAB_TYPE.DONE ? Colors.black : Colors.blueGrey} />
+          </TouchableOpacity>
         </View>
         <BottomDialog
           ref={bottomDialogRef}
-          onAdd={onAddItem} 
+          onAdd={onAddItem}
           onUpdate={onUpdateItem}
           onDelete={onDeleteItem}
-          />
+        />
       </View>
     </>
   )

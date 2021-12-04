@@ -86,8 +86,7 @@ export const HeaderStyles = StyleSheet.create({
 export const TodoStyles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  
+  },  
   sliderContainer: {
     width: '100%',
     height: 100,
@@ -119,7 +118,10 @@ export const TodoStyles = StyleSheet.create({
   },
   swiperDotStyle: {
     display: 'none',
-  },
+  },  
+});
+
+export const TodoPageStyles = StyleSheet.create({
   swiperPage: {
     flex: 1,
   }

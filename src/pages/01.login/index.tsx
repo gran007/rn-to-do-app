@@ -19,8 +19,12 @@ const checkAccount = (email: string, password: string): boolean => {
 const Login: FC<LoginProps> = (props) => {
   const scrollRef = createRef<ScrollView>();
   const dipatch = useDispatch();
-  const [email, setEmail] = useState(__DEV__ ? 'test@test.com' : '');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState(
+    __DEV__ ? 'test@test.com' : 
+  '');
+  const [password, setPassword] = useState(
+    __DEV__ ? '1234' : 
+    '');
   const [errorText, setErrorText] = useState('');
   const isValidate = useMemo(() => {
     return validateEmail(email);
@@ -29,11 +33,13 @@ const Login: FC<LoginProps> = (props) => {
   const onLogin = useCallback(() => {
     dipatch(actions.common.showLoader());
     if (checkAccount(email, password)) {
-      dipatch(actions.auth.setUserId(email));
+      dipatch(actions.auth.setUserId(email));      
+      setEmail('');
+      setPassword('');
       navigation.navigate('todo');
     } else {
       setErrorText(Strings.LOGIN_ERROR);
-    }
+    }    
     dipatch(actions.common.hideLoader());
   }, [email, password]);
 
