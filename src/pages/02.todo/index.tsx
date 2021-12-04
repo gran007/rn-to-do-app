@@ -1,5 +1,6 @@
-import React, { FC, useCallback, useState, createRef, useMemo } from 'react';
-import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import React, { FC, useCallback, useState, createRef, useEffect } from 'react';
+import { View, FlatList, TouchableOpacity } from 'react-native';
+import { useSelector } from 'react-redux';
 import { TodoStyles as styles } from '@todo/styles'
 import Strings from '@todo/strings';
 import { TAB_TYPE } from '@todo/constants';
@@ -10,41 +11,36 @@ import Swiper from 'react-native-swiper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import Header from './01.header'
-
-const tempInBoxList: TodoListItemProps[] = [
-  {
-    title: `Test Todo 3`,
-    content: `TODO App용 서버 구현하기
-
-    -Node.js
-    -GraphQL
-    Postgree
-    -TypeORM`,
-  },
-  {
-    title: `Test Todo 1`,
-    content: `TEST`,
-  },
-]
-
-const tempDoneList: TodoListItemProps[] = [
-  {
-    title: `Test Todo 2`,
-    content: `React Native Todo App 만들기`,
-  }
-]
+import AsyncStorage from '@react-native-community/async-storage';
+import { RootState } from '@todo/redux';
 
 const Todo: FC<TodoProps> = (props) => {
   const { navigation } = props;
+  const { userId } = useSelector((state: RootState) => state.auth);
   const bottomDialogRef = createRef<DialogRefProps>();
   const swiperRef = createRef<Swiper>();
-  // const [selectedItem, setSelectedItem] = useState<TodoListItemProps | null>(tempInBoxList[0]);
-  const [inBoxList, setInBoxList] = useState(tempInBoxList);
-  const [doneList, setDoneList] = useState(tempDoneList);
+  const [load, setLoad] = useState<boolean>(false);
+  const [inBoxList, setInBoxList] = useState<TodoListItemProps[]>([]);
+  const [doneList, setDoneList] = useState<TodoListItemProps[]>([]);
   const [tabIndex, setTabIndex] = useState(0);
   const onGoBack = useCallback(() => {
     navigation.navigate('login');
   }, [navigation]);
+  useEffect(() => {
+    if(load) {
+      AsyncStorage.setItem(userId as string, JSON.stringify({inBoxList, doneList}));
+    }
+  }, [inBoxList, doneList])
+  useEffect(() => {
+    AsyncStorage.getItem(userId as string).then((item)=>{
+      if(item) {
+        const { inBoxList, doneList } = JSON.parse(item);
+        setInBoxList([...inBoxList]);
+        setDoneList([...doneList]);
+      }
+      setLoad(true);
+    });
+  }, [])
   const onClickCheckInBoxItem = useCallback((index: number) => {
     const item: TodoListItemProps = inBoxList.splice(index, 1)[0];
     setInBoxList([...inBoxList]);

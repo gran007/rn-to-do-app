@@ -9,6 +9,6 @@ export default createAppContainer(createSwitchNavigator(
     todo: Pages.Todo,
   },
   {   
-    initialRouteName: 'todo',
+    initialRouteName: 'login',
   }
 ));
