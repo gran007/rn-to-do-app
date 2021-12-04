@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { Colors } from './Colors';
-import { scale, verticalScale, statusBarHeight } from './Scaling';
+import { scale, verticalScale } from './Scaling';
 import { CS } from './CommonStyles';
 
 export const LoginStyles = StyleSheet.create({

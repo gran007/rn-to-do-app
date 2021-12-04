@@ -44,7 +44,10 @@ const Login: FC<LoginProps> = (props) => {
   }, [email, password]);
 
   const onFocusTextInput = () => {
-    scrollRef.current?.scrollToEnd();    
+    if(scrollRef.current) {
+      scrollRef.current.scrollToEnd();
+    }
+    // scrollRef.current?.scrollToEnd();    
   };
   const buttonDisabled = useMemo(() => {
     return !(email.length > 0 && password.length > 0 && isValidate);

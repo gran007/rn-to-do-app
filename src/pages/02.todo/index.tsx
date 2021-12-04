@@ -51,7 +51,10 @@ const Todo: FC<TodoProps> = (props) => {
     setInBoxList([item, ...inBoxList]);
   }, [inBoxList, doneList]);
   const onPressItem = useCallback((item: TodoListItemProps, index: number) => {
-    bottomDialogRef.current?.showUpdate(item, index);
+    if(bottomDialogRef.current) {
+      bottomDialogRef.current.showUpdate(item, index);
+    }
+    // bottomDialogRef.current?.showUpdate(item, index);
   }, [bottomDialogRef, bottomDialogRef.current]);
   const onAddItem = useCallback((item: TodoListItemProps) => {
     setInBoxList([...inBoxList, item]);
@@ -77,10 +80,15 @@ const Todo: FC<TodoProps> = (props) => {
     }
   }, [tabIndex, inBoxList, doneList]);
   const onClickTab = useCallback((index: number) => {
-    swiperRef.current?.scrollBy(index - tabIndex);
+    if(swiperRef.current) {
+      swiperRef.current.scrollBy(index - tabIndex);
+    }
+    // swiperRef.current?.scrollBy(index - tabIndex);
   }, [swiperRef, swiperRef.current, tabIndex]);
   const onShowAddDialog = useCallback(() => {
-    bottomDialogRef.current?.showAdd();
+    if(bottomDialogRef.current) {
+      bottomDialogRef.current.showAdd();
+    }
   }, [bottomDialogRef, bottomDialogRef.current]);
   return (
     <>
