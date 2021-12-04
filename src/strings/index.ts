@@ -4,9 +4,9 @@ import en from './en'
 
 const Strings = new LocalizedStrings({
   ko,
-  // 'ko-KR': ko,
-  // en,
-  // 'en-US': en,  
+  'ko-KR': ko,
+  en,
+  'en-US': en,  
 });
 
 export default Strings;
