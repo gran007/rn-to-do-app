@@ -107,6 +107,16 @@ export const TodoStyles = StyleSheet.create({
     height: scale(56),
     ...CS.centerAlign,
   },
+  addButton: {
+    width: scale(56),
+    height: scale(56),
+    ...CS.centerAlign,
+    backgroundColor: Colors.flatBlue,
+    borderRadius: scale(4),
+    position: 'absolute',
+    left: scale((360 - 56) / 2),
+    top: verticalScale(-8),
+  },
   swiperDotStyle: {
     display: 'none',
   },
@@ -123,9 +133,9 @@ export const TodoItemStyles = StyleSheet.create({
   item: {
     paddingHorizontal: scale(16),
     paddingBottom: verticalScale(8),
-    borderBottomWidth: 1,
-    borderColor: Colors.blueGrey,
-  },
+    // borderBottomWidth: 1,
+    // borderColor: Colors.blueGrey,
+  },  
   title: {
     flexDirection: 'row',
     ...CS.centerVerticalRow,    
@@ -146,6 +156,12 @@ export const TodoItemStyles = StyleSheet.create({
   contentText: {
     ...CS.font14,
     color: Colors.blueGrey,
+  },
+  bottomBorder: {
+    width: '100%',
+    height: 1,
+    backgroundColor: Colors.blueGrey,
+    marginTop: verticalScale(8),
   },
 });
 
@@ -199,17 +215,30 @@ export const BottomDialogStyles = StyleSheet.create({
     borderRadius: scale(8),
   },
   buttons: {
+    flexDirection: 'row',
     width: '100%',
     height: verticalScale(56 + 32),
     backgroundColor: Colors.white,
-    ...CS.centerAlign,
+    ...CS.centerVerticalRow,
+    justifyContent: 'space-between',
+    paddingHorizontal: scale(16),
   },
   button: {
-    width: scale(320 - 32),
+    width: scale(360 - 32),
     height: scale(56),
     backgroundColor: Colors.twilightBlue,
     borderRadius: scale(8),
     ...CS.centerAlign,
+  },
+  buttonMini: {
+    width: scale((360 - 32 - 16)/2),
+    height: scale(56),
+    backgroundColor: Colors.twilightBlue,
+    borderRadius: scale(8),
+    ...CS.centerAlign,
+  },
+  deleteButton: {
+    backgroundColor: Colors.orangeyRed,
   },
   buttonText: {
     ...CS.font18,

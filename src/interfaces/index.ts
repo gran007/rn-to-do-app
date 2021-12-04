@@ -34,21 +34,28 @@ export interface TodoListItemProps {
 }
 
 export interface DialogRefProps {
-  show: ()=>void
+  showAdd: ()=>void,
+  showUpdate: (item:TodoListItemProps, index: number)=>void,
 }
 // export interface RefObject<T> {
 //   readonly current: T | null;
 // }
 
+export interface TodoListItemUpdateProps extends TodoListItemProps {
+  index: number,
+}
+
 export interface BottomDialogProps {
   ref: any,
   onAdd: (item: TodoListItemProps)=>void,
+  onUpdate: (item: TodoListItemUpdateProps)=>void,
+  onDelete: (index: number)=>void,
 }
 
 export interface TodoItemProps extends TodoListItemProps {
   isLast: boolean,
   isDone: boolean,
   index: number,
-  onPressItem: (listItem: TodoListItemProps, index: number) => void,
+  onPressItem: () => void,
   onClickCheck: (index: number) => void
 }

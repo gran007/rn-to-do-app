@@ -5,14 +5,14 @@ import { TodoItemProps } from '@todo/interfaces'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const TodoItem: FC<TodoItemProps> = (props) => {
-  const { title, content, isDone, index, onPressItem, onClickCheck } = props;
+  const { title, content, isDone, index, isLast, onPressItem, onClickCheck } = props;
   const translateX = useRef(new Animated.Value(0)).current
   const onPressCheckbox = () => {
     Animated.timing(
       translateX,
       {
         toValue: scale(360),
-        duration: 500,
+        duration: 280,
         useNativeDriver: false,
         easing: Easing.cubic,
       }
@@ -23,7 +23,7 @@ const TodoItem: FC<TodoItemProps> = (props) => {
   };
   const iconName = useMemo(() => isDone ?  'check-square' : 'square-o', [isDone]);
   return (
-    <TouchableOpacity activeOpacity={1} style={styles.container}>
+    <TouchableOpacity onPress={onPressItem} style={styles.container}>
       <Animated.View style={[styles.item, {
         transform: [{ translateX }]
       }]}>
@@ -37,6 +37,10 @@ const TodoItem: FC<TodoItemProps> = (props) => {
         <View style={styles.content}>
           <Text style={styles.contentText}>{content}</Text>
         </View>
+        {
+          !isLast &&
+          <View style={styles.bottomBorder}/>
+        }
       </Animated.View>
     </TouchableOpacity>
   )

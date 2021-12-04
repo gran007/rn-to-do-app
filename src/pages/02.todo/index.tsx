@@ -3,7 +3,7 @@ import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { TodoStyles as styles } from '@todo/styles'
 import Strings from '@todo/strings';
 import { TAB_TYPE } from '@todo/constants';
-import { DialogRefProps, TodoListItemProps, TodoProps } from '@todo/interfaces'
+import { DialogRefProps, TodoListItemProps, TodoListItemUpdateProps, TodoProps } from '@todo/interfaces'
 import TodoItem from './02.todo-item'
 import BottomDialog from './03.bottom-dialog'
 import Swiper from 'react-native-swiper';
@@ -38,7 +38,7 @@ const Todo: FC<TodoProps> = (props) => {
   const { navigation } = props;
   const bottomDialogRef = createRef<DialogRefProps>();
   const swiperRef = createRef<Swiper>();
-  const [selectedItem, setSelectedItem] = useState<TodoListItemProps | null>(tempInBoxList[0]);
+  // const [selectedItem, setSelectedItem] = useState<TodoListItemProps | null>(tempInBoxList[0]);
   const [inBoxList, setInBoxList] = useState(tempInBoxList);
   const [doneList, setDoneList] = useState(tempDoneList);
   const [tabIndex, setTabIndex] = useState(0);
@@ -56,18 +56,37 @@ const Todo: FC<TodoProps> = (props) => {
     setInBoxList([item, ...inBoxList]);
   }, [inBoxList, doneList]);
   const onPressItem = useCallback((item: TodoListItemProps, index: number) => {
-    setSelectedItem(item);
-  }, []);
+    bottomDialogRef.current?.showUpdate(item, index);
+  }, [bottomDialogRef, bottomDialogRef.current]);
   const onAddItem = useCallback((item: TodoListItemProps) => {
     setInBoxList([...inBoxList, item]);
   }, [inBoxList]);
+  const onUpdateItem = useCallback((item: TodoListItemUpdateProps) => {
+    if(tabIndex === TAB_TYPE.INBOX) {
+      inBoxList[item.index].title = item.title;
+      inBoxList[item.index].content = item.content;
+      setInBoxList([...inBoxList]);
+    } else {
+      doneList[item.index].title = item.title;
+      doneList[item.index].content = item.content;
+      setDoneList([...doneList]);
+    }
+  }, [tabIndex, inBoxList, doneList]);
+  const onDeleteItem = useCallback((index: number) => {
+    if(tabIndex === TAB_TYPE.INBOX) {
+      inBoxList.splice(index, 1);
+      setInBoxList([...inBoxList]);
+    } else {
+      doneList.splice(index, 1);
+      setDoneList([...doneList]);
+    }
+  }, [tabIndex, inBoxList, doneList]);
   const onClickTab = useCallback((index: number) => {
     swiperRef.current?.scrollBy(index - tabIndex);
   }, [swiperRef, swiperRef.current, tabIndex]);
-  // useEffect(() => {
-  //   bottomDialogRef.current?.show();
-  // }, [bottomDialogRef.current]);
-  const title = useMemo(() => tabIndex === TAB_TYPE.INBOX ? Strings.TODO_INBOX : Strings.TODO_DONE, [tabIndex]);
+  const onShowAddDialog = useCallback(() => {
+    bottomDialogRef.current?.showAdd();
+  }, [bottomDialogRef, bottomDialogRef.current]);
   return (
     <>
       <View style={styles.container}>
@@ -96,7 +115,7 @@ const Todo: FC<TodoProps> = (props) => {
                   content={item.content}
                   isLast={isLast}
                   onClickCheck={onClickCheckInBoxItem}
-                  onPressItem={onPressItem}
+                  onPressItem={()=>onPressItem(item, index)}
                 />
               }}
             />
@@ -118,13 +137,12 @@ const Todo: FC<TodoProps> = (props) => {
                   content={item.content}
                   isLast={isLast}
                   onClickCheck={onClickCheckDoneItem}
-                  onPressItem={onPressItem}
+                  onPressItem={()=>onPressItem(item, index)}
                 />
               }}
             />
           </View>
         </Swiper>
-
         <View style={styles.tabBar}>
           <TouchableOpacity
             style={styles.tabButton}
@@ -136,10 +154,18 @@ const Todo: FC<TodoProps> = (props) => {
             onPress={() => onClickTab(TAB_TYPE.DONE)}>
             <Icon name='check-square' size={32} color={tabIndex === TAB_TYPE.DONE ? Colors.black : Colors.blueGrey} />
           </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.addButton}
+            onPress={onShowAddDialog}>
+            <Icon name='plus' size={32} color={Colors.white} />
+          </TouchableOpacity>
         </View>
         <BottomDialog
           ref={bottomDialogRef}
-          onAdd={onAddItem} />
+          onAdd={onAddItem} 
+          onUpdate={onUpdateItem}
+          onDelete={onDeleteItem}
+          />
       </View>
     </>
   )
