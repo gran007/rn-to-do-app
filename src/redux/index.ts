@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
 
-import { reducer as commonReducer, actions as CommonActions } from './reducers/CommonSlice';
+import { reducer as commonReducer, actions as commonActions } from './reducers/Common';
+import { reducer as authReducer, actions as authActions } from './reducers/Auth';
 const actions = {
-  common: CommonActions
+  auth: authActions,
+  common: commonActions,
 }
 export { actions };
 
@@ -11,6 +13,7 @@ export { actions };
 export const store = configureStore({
   reducer: combineReducers({
     common: commonReducer,
+    auth: authReducer,
   })
 });
 

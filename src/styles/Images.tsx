@@ -5,5 +5,8 @@ import { scale } from './Scaling';
 export const Images = {
   logo: <Image source={require('../images/logo.png')}
     style={{ width: scale(74), height: scale(74) }}
+  />,
+  headerLogo: <Image source={require('../images/logo.png')}
+    style={{ width: scale(24), height: scale(24) }}
   />
 }

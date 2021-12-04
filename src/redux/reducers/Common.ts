@@ -5,7 +5,7 @@ const initialState: CommonState = {
   loader: false,
 };
 
-const CommonSlice = createSlice({
+const slice = createSlice({
   name: 'Common',
   initialState,
   reducers: {
@@ -18,5 +18,5 @@ const CommonSlice = createSlice({
   },
 });
 
-export const reducer = CommonSlice.reducer;
-export const actions = CommonSlice.actions;
+export const reducer = slice.reducer;
+export const actions = slice.actions;
