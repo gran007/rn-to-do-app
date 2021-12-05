@@ -502,5 +502,282 @@ exports[`App Snapshot 1`] = `
       </Text>
     </View>
   </View>
+  <View
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    nativeID="animatedComponent"
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#00000096",
+        "bottom": 0,
+        "display": "none",
+        "height": "100%",
+        "justifyContent": "center",
+        "left": 0,
+        "opacity": 1,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+        "width": "100%",
+        "zIndex": 1,
+      }
+    }
+  >
+    <View
+      collapsable={false}
+      nativeID="animatedComponent"
+      style={
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "transform": Array [
+            Object {
+              "translateY": 667,
+            },
+          ],
+          "width": "100%",
+        }
+      }
+    >
+      <View
+        accessible={true}
+        collapsable={false}
+        focusable={false}
+        nativeID="animatedComponent"
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "opacity": 1,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "backgroundColor": "#FFFFFF",
+              "borderTopLeftRadius": 16.666666666666668,
+              "borderTopRightRadius": 16.666666666666668,
+              "height": 100,
+              "justifyContent": "center",
+              "paddingLeft": 33.333333333333336,
+              "width": "100%",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#000",
+                "fontFamily": "NotoSansKR-Bold",
+                "fontSize": 18,
+              }
+            }
+          >
+            InBox에 할일을 추가합니다
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "#c8c7cc",
+              "paddingHorizontal": 33.333333333333336,
+              "paddingVertical": 16.675,
+              "width": "100%",
+            }
+          }
+        >
+          <TextInput
+            multiline={false}
+            onChangeText={[Function]}
+            placeholder="타이틀을 입력하세요"
+            style={
+              Object {
+                "color": "#000",
+                "fontFamily": "NotoSansKR-Bold",
+                "fontSize": 18,
+                "height": 116.72500000000001,
+              }
+            }
+            testID="titleInput"
+            value=""
+          />
+          <TextInput
+            multiline={true}
+            onChangeText={[Function]}
+            placeholder="내용을 입력하세요"
+            style={
+              Object {
+                "backgroundColor": "#f9f9f9",
+                "borderRadius": 16.666666666666668,
+                "color": "#8a8a8f",
+                "fontFamily": undefined,
+                "fontSize": 14,
+                "minHeight": 100.05000000000001,
+              }
+            }
+            testID="contentInput"
+            textAlignVertical="center"
+            value=""
+          />
+        </View>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#FFFFFF",
+              "flexDirection": "row",
+              "height": 183.425,
+              "justifyContent": "space-between",
+              "paddingHorizontal": 33.333333333333336,
+              "width": "100%",
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "width": "100%",
+                },
+                Object {
+                  "display": "none",
+                },
+              ]
+            }
+          >
+            <View
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              nativeID="animatedComponent"
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#ff3b30",
+                  "borderRadius": 16.666666666666668,
+                  "height": 116.66666666666667,
+                  "justifyContent": "center",
+                  "opacity": 1,
+                  "width": 325,
+                }
+              }
+              testID="deleteButton"
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#FFFFFF",
+                    "fontFamily": undefined,
+                    "fontSize": 18,
+                  }
+                }
+              >
+                삭제하기
+              </Text>
+            </View>
+            <View
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              nativeID="animatedComponent"
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#0f4c81",
+                  "borderRadius": 16.666666666666668,
+                  "height": 116.66666666666667,
+                  "justifyContent": "center",
+                  "opacity": 1,
+                  "width": 325,
+                }
+              }
+              testID="updateButton"
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#FFFFFF",
+                    "fontFamily": undefined,
+                    "fontSize": 18,
+                  }
+                }
+              >
+                저장하기
+              </Text>
+            </View>
+          </View>
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            nativeID="animatedComponent"
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#0f4c81",
+                "borderRadius": 16.666666666666668,
+                "height": 116.66666666666667,
+                "justifyContent": "center",
+                "opacity": 1,
+                "width": 683.3333333333334,
+              }
+            }
+            testID="addButton"
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#FFFFFF",
+                  "fontFamily": undefined,
+                  "fontSize": 18,
+                }
+              }
+            >
+              저장하기
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
 </View>
 `;
