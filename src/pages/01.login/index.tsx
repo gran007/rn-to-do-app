@@ -20,10 +20,10 @@ const Login: FC<LoginProps> = (props) => {
   const scrollRef = createRef<ScrollView>();
   const dipatch = useDispatch();
   const [email, setEmail] = useState(
-    __DEV__ ? 'test@test.com' : 
+    // __DEV__ ? 'test@test.com' : 
   '');
   const [password, setPassword] = useState(
-    __DEV__ ? '1234' : 
+    // __DEV__ ? '1234' : 
     '');
   const [errorText, setErrorText] = useState('');
   const isValidate = useMemo(() => {
@@ -69,22 +69,25 @@ const Login: FC<LoginProps> = (props) => {
           </View>
           <View style={styles.form}>
             <TextInput
+              testID="emailInput"
               keyboardType='email-address'
               value={email}
               onChangeText={(email) => setEmail(email)}
               onFocus={onFocusTextInput}
               style={styles.textInput} />
             <View style={styles.error}>
-              <Text style={styles.errorText}>{errorText}</Text>
+              <Text testID='errorText' style={styles.errorText}>{errorText}</Text>
             </View>
           </View>
           <TextInput
+            testID="passwordInput"
             secureTextEntry={true}
             value={password}
             onChangeText={(password) => setPassword(password)}
             onFocus={onFocusTextInput}
             style={styles.textInput} />
           <TouchableOpacity
+            testID="loginButton"
             disabled={buttonDisabled}
             style={[styles.loginButton, buttonDisabled && styles.buttonDisabled]}
             onPress={onLogin}>

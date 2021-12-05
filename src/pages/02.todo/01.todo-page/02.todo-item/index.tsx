@@ -22,8 +22,11 @@ const TodoItem: FC<TodoItemProps> = (props) => {
     });
   };
   const iconName = useMemo(() => isDone ?  'check-square' : 'square-o', [isDone]);
+  const testID = useMemo(()=> isDone ? `done_${index}`: `inbox_${index}`, [isDone]);
+  const titleTestID = useMemo(()=> isDone ? `done_title_${index}`: `inbox_title_${index}`, [isDone]);
+  const contentTestID = useMemo(()=> isDone ? `done_content_${index}`: `inbox_content_${index}`, [isDone]);
   return (
-    <TouchableOpacity onPress={onPressItem} style={styles.container}>
+    <TouchableOpacity testID={testID} onPress={onPressItem} style={styles.container}>
       <Animated.View style={[styles.item, {
         transform: [{ translateX }]
       }]}>
@@ -32,10 +35,12 @@ const TodoItem: FC<TodoItemProps> = (props) => {
             onPress={onPressCheckbox}>
             <Icon name={iconName} size={32} color={Colors.brownishGrey} />
           </TouchableOpacity>
-          <Text style={[styles.titleText, isDone && styles.titleDoneText]}>{title}</Text>
+          <Text 
+          testID={titleTestID}
+            style={[styles.titleText, isDone && styles.titleDoneText]}>{title}</Text>
         </View>
         <View style={styles.content}>
-          <Text style={styles.contentText}>{content}</Text>
+          <Text testID={contentTestID} style={styles.contentText}>{content}</Text>
         </View>
         {
           !isLast &&

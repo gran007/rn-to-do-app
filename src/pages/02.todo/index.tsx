@@ -11,14 +11,15 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { RootState } from '@todo/redux';
 import TodoPage from './01.todo-page'
+import { act } from "@testing-library/react-native";
 
 const Todo: FC<TodoProps> = (props) => {
-  const { navigation } = props;
+  const { navigation, defaultInBox=[] } = props;
   const { userId } = useSelector((state: RootState) => state.auth);
   const bottomDialogRef = createRef<DialogRefProps>();
   const swiperRef = createRef<Swiper>();
   const [load, setLoad] = useState<boolean>(false);
-  const [inBoxList, setInBoxList] = useState<TodoListItemProps[]>([]);
+  const [inBoxList, setInBoxList] = useState<TodoListItemProps[]>(defaultInBox);
   const [doneList, setDoneList] = useState<TodoListItemProps[]>([]);
   const [tabIndex, setTabIndex] = useState(0);
   const onGoBack = useCallback(() => {
@@ -36,7 +37,9 @@ const Todo: FC<TodoProps> = (props) => {
         setInBoxList([...inBoxList]);
         setDoneList([...doneList]);
       }
-      setLoad(true);
+      act(()=> {
+        setLoad(true);
+      });
     });
   }, [])
   const onClickCheckInBoxItem = useCallback((index: number) => {
@@ -122,6 +125,7 @@ const Todo: FC<TodoProps> = (props) => {
             <Icon name='inbox' size={32} color={tabIndex === TAB_TYPE.INBOX ? Colors.black : Colors.blueGrey} />
           </TouchableOpacity>
           <TouchableOpacity
+            testID='plugButton'
             style={styles.addButton}
             onPress={onShowAddDialog}>
             <Icon name='plus' size={32} color={Colors.white} />

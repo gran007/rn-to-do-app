@@ -168,6 +168,14 @@ export const TodoItemStyles = StyleSheet.create({
 });
 
 export const BottomDialogStyles = StyleSheet.create({
+  hide: {
+    display: 'none',
+  },
+  buttonRow: {
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'space-between',
+  },
   loading: {
     position: 'absolute',
     width: '100%',

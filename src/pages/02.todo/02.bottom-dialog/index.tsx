@@ -66,11 +66,11 @@ const BottomDialog: FC<BottomDialogProps> = forwardRef((props, ref) => {
   const desc = useMemo(() =>
     isUpdate ? Strings.TODO_DIALOG_UPDATE : Strings.TODO_DIALOG_ADD,
     [isUpdate]);
-  if (!show) {
-    return <></>;
-  }
+  // if (!show) {
+  //   return <></>;
+  // }
   return (
-    <TouchableOpacity activeOpacity={1} onPress={onClose} style={styles.loading}>
+    <TouchableOpacity activeOpacity={1} onPress={onClose} style={[styles.loading, !show && styles.hide]}>
       <Animated.View style={[styles.bottom, { transform: [{ translateY }] }]}>
         <TouchableOpacity activeOpacity={1}>
           <View style={styles.label}>
@@ -78,12 +78,14 @@ const BottomDialog: FC<BottomDialogProps> = forwardRef((props, ref) => {
           </View>
           <View style={styles.body}>
             <TextInput
+              testID='titleInput'
               placeholder={Strings.TODO_DIALOG_TITLE_PLACEHOLDER}
               multiline={false}
               value={title}
               onChangeText={(title: string) => setTitle(title)}
               style={styles.titleText} />
             <TextInput
+              testID='contentInput'
               textAlignVertical="center"
               placeholder={Strings.TODO_DIALOG_CONTENT_PLACEHOLDER}
               multiline={true}
@@ -94,24 +96,28 @@ const BottomDialog: FC<BottomDialogProps> = forwardRef((props, ref) => {
           </View>
           <View style={styles.buttons}>
             {
-              isUpdate ?
-                <>
+              <>
+                <View style={[styles.buttonRow, !isUpdate && styles.hide]}>
                   <TouchableOpacity
+                    testID='deleteButton'
                     style={[styles.buttonMini, styles.deleteButton]}
                     onPress={onClickDelete}>
                     <Text style={styles.buttonText}>{Strings.TODO_ADD_INBOX_DELETE_BUTTON}</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
+                    testID='updateButton'
                     style={styles.buttonMini}
                     onPress={onClickUpdate}>
                     <Text style={styles.buttonText}>{Strings.TODO_ADD_INBOX_SAVE_BUTTON}</Text>
                   </TouchableOpacity>
-                </> :
+                </View>
                 <TouchableOpacity
-                  style={styles.button}
+                  testID='addButton'
+                  style={[styles.button, isUpdate && styles.hide]}
                   onPress={onClickAdd}>
                   <Text style={styles.buttonText}>{Strings.TODO_ADD_INBOX_SAVE_BUTTON}</Text>
                 </TouchableOpacity>
+              </>
             }
           </View>
         </TouchableOpacity>

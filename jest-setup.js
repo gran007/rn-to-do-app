@@ -6,3 +6,4 @@ NativeModules.ReactLocalization = {
 };
 
 jest.mock('@react-native-async-storage/async-storage', () => mockAsyncStorage);
+jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');

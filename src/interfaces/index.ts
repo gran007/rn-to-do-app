@@ -21,6 +21,7 @@ export interface LoginProps {
 
 export interface TodoProps {
   navigation: NavigationProps
+  defaultInBox: TodoListItemProps[],
 }
 
 export interface TodoPageProps {

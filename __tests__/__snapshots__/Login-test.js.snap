@@ -1,0 +1,187 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App Snapshot 1`] = `
+Array [
+  <View
+    style={
+      Object {
+        "backgroundColor": "#FFFFFF",
+        "flex": 1,
+      }
+    }
+  >
+    <RCTScrollView
+      keyboardShouldPersistTaps="handled"
+      showsVerticalScrollIndicator={false}
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <View>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "marginBottom": 66.7,
+                "marginTop": 100.05000000000001,
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#000",
+                  "fontFamily": "NotoSansKR-Bold",
+                  "fontSize": 32,
+                  "marginBottom": 33.35,
+                }
+              }
+            >
+              Simple Todo
+            </Text>
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../src/images/logo.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 154.16666666666669,
+                  "width": 154.16666666666669,
+                }
+              }
+            />
+          </View>
+          <View
+            style={
+              Object {
+                "position": "relative",
+              }
+            }
+          >
+            <TextInput
+              keyboardType="email-address"
+              onChangeText={[Function]}
+              onFocus={[Function]}
+              style={
+                Object {
+                  "borderColor": "#000000",
+                  "borderRadius": 16.666666666666668,
+                  "borderWidth": 1,
+                  "color": "#000",
+                  "fontFamily": undefined,
+                  "fontSize": 18,
+                  "height": 108.33333333333334,
+                  "marginBottom": 50.025000000000006,
+                  "width": 600,
+                }
+              }
+              testID="emailInput"
+              value=""
+            />
+            <View
+              style={
+                Object {
+                  "left": 16.666666666666668,
+                  "position": "absolute",
+                  "top": 108.3875,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#ff3b30",
+                    "fontFamily": undefined,
+                    "fontSize": 14,
+                  }
+                }
+                testID="errorText"
+              >
+                
+              </Text>
+            </View>
+          </View>
+          <TextInput
+            onChangeText={[Function]}
+            onFocus={[Function]}
+            secureTextEntry={true}
+            style={
+              Object {
+                "borderColor": "#000000",
+                "borderRadius": 16.666666666666668,
+                "borderWidth": 1,
+                "color": "#000",
+                "fontFamily": undefined,
+                "fontSize": 18,
+                "height": 108.33333333333334,
+                "marginBottom": 50.025000000000006,
+                "width": 600,
+              }
+            }
+            testID="passwordInput"
+            value=""
+          />
+          <View
+            accessibilityState={
+              Object {
+                "disabled": true,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            nativeID="animatedComponent"
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#c8c7cc",
+                "borderRadius": 16.666666666666668,
+                "height": 108.33333333333334,
+                "justifyContent": "center",
+                "marginBottom": 66.7,
+                "marginTop": 33.35,
+                "opacity": 1,
+                "width": 600,
+              }
+            }
+            testID="loginButton"
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#FFFFFF",
+                  "fontFamily": undefined,
+                  "fontSize": 18,
+                }
+              }
+            >
+              로그인
+            </Text>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>,
+  <View />,
+]
+`;
