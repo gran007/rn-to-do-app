@@ -53,7 +53,7 @@ describe("TODO 테스트", () => {
   })
 
   it('데이터 삭제 테스트', async () => {
-    const { getByTestId } = render(
+    const { getByTestId, queryByTestId } = render(
       <Provider store={store}>
         <Todo defaultInBox={[{title: 'TEST', content: '테스트1'}]} />
       </Provider>
@@ -62,6 +62,9 @@ describe("TODO 테스트", () => {
     fireEvent(item, 'onPress');
     const deleteButton = getByTestId('deleteButton');        
     fireEvent(deleteButton, 'onPress');
+    const titleText = queryByTestId('inbox_title_0');
+    expect(titleText).toBeNull();
+    
   });
 });
 
